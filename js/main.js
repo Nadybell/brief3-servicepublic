@@ -1,7 +1,7 @@
 // =========================================================
 // service-public-demo — script commun
 // NOTE PEDAGOGIQUE : contient volontairement des pratiques
-// non optimisées (polling, mascotte animée, compteur inutile)
+// non optimisées (polling, compteur inutile)
 // cf. ECOCONCEPTION.md
 // =========================================================
 
