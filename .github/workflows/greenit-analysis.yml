@@ -1,0 +1,37 @@
+name: Audit GreenIT-Analysis
+
+on:
+  workflow_run:
+    workflows: ["Build & Deploy"]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  audit:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Récupérer le code (fichier de config dans greenit-audit/)
+        uses: actions/checkout@v4
+
+      - name: Préparer le dossier de sortie
+        run: |
+          mkdir -p greenit-audit/output
+          chmod 777 greenit-audit/output
+
+      - name: Lancer GreenIT-Analysis (Docker)
+        run: |
+          docker run --rm --cap-add=SYS_ADMIN \
+            -v ${{ github.workspace }}/greenit-audit/input:/app/input \
+            -v ${{ github.workspace }}/greenit-audit/output:/app/output \
+            -e TZ=Europe/Paris \
+            jpreisner/greenit-analysis-cli \
+            greenit analyse /app/input/url.yaml /app/output/results.html --format=html --ci
+
+      - name: Sauvegarder le rapport (HTML + captures d'écran)
+        uses: actions/upload-artifact@v4
+        with:
+          name: greenit-report
+          path: greenit-audit/output/
+          retention-days: 90
