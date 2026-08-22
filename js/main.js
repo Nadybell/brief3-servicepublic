@@ -1,21 +1,9 @@
 // =========================================================
 // service-public-demo — script commun
 // NOTE PEDAGOGIQUE : contient volontairement des pratiques
-// non optimisées (polling, compteur inutile)
+// non optimisées (polling)
 // cf. ECOCONCEPTION.md
 // =========================================================
-
-// Compteur de visiteurs "temps réel" décoratif — déclenche un
-// re-rendu toutes les 2 secondes sans aucune valeur d'usage.
-(function compteurVisiteursDecoratif(){
-  const el = document.querySelector('[data-compteur-live]');
-  if(!el) return;
-  let base = 184320;
-  setInterval(()=>{
-    base += Math.floor(Math.random()*5);
-    el.textContent = base.toLocaleString('fr-FR');
-  }, 2000);
-})();
 
 // Gestion zone d'upload (service 1)
 function initZoneUpload(){
