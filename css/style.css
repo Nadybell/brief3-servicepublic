@@ -234,6 +234,7 @@ section{padding:56px 0;}
 .chiffre{font-family:var(--font-titre);font-size:38px;font-weight:800;color:var(--bleu-france);}
 .chiffre-label{font-size:13.5px;color:#555;}
 
+
 /* Footer */
 footer.site-footer{
   background:#1b1b35;
@@ -398,18 +399,6 @@ footer.site-footer{
   padding:14px 18px;border-radius:6px;margin-bottom:22px;font-size:14.5px;
 }
 
-/* Note flottante mascotte décorative (lourde, inutile) */
-.mascotte-flottante{
-  position:fixed;bottom:24px;right:24px;
-  width:90px;z-index:50;
-  animation:flotte 3.4s ease-in-out infinite;
-  filter:drop-shadow(0 8px 18px rgba(0,0,0,.25));
-}
-@keyframes flotte{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-14px);}
-}
-
 @media (max-width:880px){
   .hero-inner{grid-template-columns:1fr;}
   .bloc-actus{grid-template-columns:1fr;}
@@ -417,7 +406,6 @@ footer.site-footer{
   .footer-grid{grid-template-columns:repeat(2,1fr);}
   .ligne-deux{grid-template-columns:1fr;}
   .galerie-exemples{grid-template-columns:1fr;}
-  .mascotte-flottante{width:60px;}
 }
 
 /* =========================================================
@@ -434,7 +422,6 @@ footer.site-footer{
   .stepper,
   .actions-etape,
   .zone-upload,
-  .mascotte-flottante,
   .compte-utilisateur,
   .badge-duree,
   .fleche{
@@ -478,4 +465,3 @@ footer.site-footer{
     page-break-inside:avoid;
   }
 }
-
