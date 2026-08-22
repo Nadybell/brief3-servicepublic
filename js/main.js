@@ -17,24 +17,6 @@
   }, 2000);
 })();
 
-// Carrousel logos partenaires : dupliqué dans le HTML pour boucler,
-// piloté uniquement en CSS (cf. style.css)
-
-// Carrousel d'exemples de pièces (service 2) — autoplay
-function initCarrouselExemples(){
-  const piste = document.querySelector('.carrousel-piste');
-  if(!piste) return;
-  const slides = piste.children.length;
-  const points = document.querySelectorAll('.carrousel-points span');
-  let index = 0;
-  setInterval(()=>{
-    index = (index + 1) % slides;
-    piste.style.transform = `translateX(-${index*100}%)`;
-    points.forEach((p,i)=>p.classList.toggle('actif', i===index));
-  }, 3500);
-}
-document.addEventListener('DOMContentLoaded', initCarrouselExemples);
-
 // Gestion zone d'upload (service 1)
 function initZoneUpload(){
   const zone = document.querySelector('.zone-upload');
