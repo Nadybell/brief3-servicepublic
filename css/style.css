@@ -4,8 +4,6 @@
    des pratiques non optimisées (cf. fichier ECOCONCEPTION.md)
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=Caveat:wght@500;600&display=swap');
-
 :root{
   --bleu-france: #000091;
   --bleu-clair: #6a6af4;
@@ -16,13 +14,17 @@
   --blanc: #fff;
   --ombre: 0 2px 6px rgba(0,0,18,.08);
   --radius: 4px;
+  /* Polices système (RGESN RWEB-0032) : reprend la meilleure police déjà
+     installée selon l'OS du visiteur, sans requête réseau ni téléchargement. */
+  --font-texte: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-titre: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
   margin:0;
-  font-family:'Source Sans 3', Arial, sans-serif;
+  font-family:var(--font-texte);
   color:var(--noir);
   background:var(--blanc);
   line-height:1.5;
@@ -30,7 +32,7 @@ body{
 }
 
 h1,h2,h3,h4{
-  font-family:'Archivo Expanded','Archivo',Arial,sans-serif;
+  font-family:var(--font-titre);
   font-weight:700;
   color:var(--bleu-france);
   margin-top:0;
@@ -72,7 +74,7 @@ header.site-header{
   color:var(--noir);
 }
 .bloc-marque .logo-rf{
-  font-family:'Archivo Expanded';
+  font-family:var(--font-titre);
   font-weight:800;
   font-size:13px;
   line-height:1.15;
@@ -82,7 +84,7 @@ header.site-header{
 }
 .bloc-marque .logo-rf strong{display:block; color:var(--bleu-france);}
 .nom-service{
-  font-family:'Archivo Expanded';
+  font-family:var(--font-titre);
   font-weight:700;
   font-size:20px;
 }
@@ -229,26 +231,8 @@ section{padding:56px 0;}
 .chiffres-grid{
   display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;
 }
-.chiffre{font-family:'Archivo Expanded';font-size:38px;font-weight:800;color:var(--bleu-france);}
+.chiffre{font-family:var(--font-titre);font-size:38px;font-weight:800;color:var(--bleu-france);}
 .chiffre-label{font-size:13.5px;color:#555;}
-
-/* Carrousel partenaires (autoplay, décoratif) */
-.bandeau-partenaires{
-  overflow:hidden;
-  padding:30px 0;
-  border-top:1px solid var(--gris-bordure);
-  border-bottom:1px solid var(--gris-bordure);
-}
-.piste-logos{
-  display:flex;gap:60px;
-  width:max-content;
-  animation:defilement 22s linear infinite;
-}
-.piste-logos img{height:46px;width:auto;filter:grayscale(100%);opacity:.7;}
-@keyframes defilement{
-  from{transform:translateX(0);}
-  to{transform:translateX(-50%);}
-}
 
 /* Footer */
 footer.site-footer{
@@ -386,14 +370,6 @@ footer.site-footer{
 .exemple-carte.valide .legende{color:#1e7d34;font-weight:600;}
 .exemple-carte.invalide .legende{color:var(--rouge-marianne);font-weight:600;}
 
-/* Carrousel d'exemples plein format (autoplay) */
-.carrousel-exemples{position:relative;margin:20px 0 30px;border-radius:8px;overflow:hidden;border:1px solid var(--gris-bordure);}
-.carrousel-piste{display:flex;transition:transform .6s ease;}
-.carrousel-piste img{width:100%;flex:0 0 100%;display:block;}
-.carrousel-points{display:flex;justify-content:center;gap:8px;padding:12px;background:#fff;}
-.carrousel-points span{width:8px;height:8px;border-radius:50%;background:#ccc;}
-.carrousel-points span.actif{background:var(--bleu-france);}
-
 .recapitulatif{
   background:var(--gris-fond);border-radius:8px;padding:24px;margin-bottom:24px;
 }
@@ -414,7 +390,7 @@ footer.site-footer{
 }
 .numero-dossier{
   display:inline-block;background:var(--gris-fond);padding:10px 22px;border-radius:6px;
-  font-family:'Archivo Expanded';font-weight:700;letter-spacing:.05em;margin:14px 0;
+  font-family:var(--font-titre);font-weight:700;letter-spacing:.05em;margin:14px 0;
 }
 
 .bandeau-erreur{
@@ -443,3 +419,63 @@ footer.site-footer{
   .galerie-exemples{grid-template-columns:1fr;}
   .mascotte-flottante{width:60px;}
 }
+
+/* =========================================================
+   CSS Print (RGESN RWEB-0031)
+   Masque la navigation, les éléments décoratifs et les
+   contrôles interactifs inutiles sur papier ; adapte les
+   couleurs pour limiter la consommation d'encre.
+   ========================================================= */
+@media print{
+  /* Éléments purement décoratifs ou interactifs, sans valeur imprimée */
+  .bandeau-tricolore,
+  header.site-header,
+  .barre-recherche,
+  .stepper,
+  .actions-etape,
+  .zone-upload,
+  .mascotte-flottante,
+  .compte-utilisateur,
+  .badge-duree,
+  .fleche{
+    display:none !important;
+  }
+
+  /* Fond blanc, texte noir : lisible et économe en encre */
+  body{
+    background:#fff;
+    color:#000;
+    font-size:12pt;
+    line-height:1.4;
+  }
+
+  /* Suppression des ombres, fonds colorés et coins arrondis coûteux en encre */
+  .carte-etape,.carte-service,.card,.chiffres-cles,.entete-service{
+    box-shadow:none !important;
+    background:#fff !important;
+    border:1px solid #999 !important;
+  }
+
+  h1,h2,h3,h4{color:#000;}
+  a{color:#000;text-decoration:underline;}
+
+  /* Affiche l'URL réelle des liens utiles à côté du texte */
+  a[href^="http"]:after{
+    content:" (" attr(href) ")";
+    font-size:9pt;
+    color:#555;
+  }
+
+  /* Toutes les étapes d'un formulaire multi-écrans deviennent visibles
+     à l'impression (à l'écran, seule l'étape active est affichée) */
+  .ecran-etape{display:block !important;}
+
+  /* Pas de largeur/marge calées sur l'écran : on utilise toute la page */
+  .conteneur,.zone-formulaire{max-width:100%;margin:0;padding:0;}
+
+  /* Évite qu'une carte ou un bloc soit coupé au milieu entre deux pages */
+  .carte-etape,.carte-service,article{
+    page-break-inside:avoid;
+  }
+}
+
