@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inscription sur les listes électorales — Mes démarches en ligne</title>
+<title>Demande d'acte de naissance — Mes démarches en ligne</title>
 <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
@@ -32,11 +32,11 @@
 
 <div class="entete-service">
   <div class="conteneur">
-    <div class="fil-ariane"><a href="../../index.html">Accueil</a> › <a href="../../index.html#services">Services</a> › Listes électorales</div>
-    <h1>Inscription sur les listes électorales</h1>
+    <div class="fil-ariane"><a href="../../index.html">Accueil</a> › <a href="../../index.html#services">Services</a> › Acte de naissance</div>
+    <h1>Demande d'acte de naissance</h1>
     <div class="meta">
-      <span>⏱ Durée estimée : 8 minutes</span>
-      <span>🖼️ Exemples de pièces fournis</span>
+      <span>⏱ Durée estimée : 5 minutes</span>
+      <span>📨 Envoi postal ou numérique</span>
       <span>💾 Progression non sauvegardée</span>
     </div>
   </div>
@@ -45,38 +45,48 @@
 <div class="zone-formulaire">
 
   <div class="stepper">
-    <div class="step actif" data-step="1"><div class="rond">1</div>Identité</div>
-    <div class="step" data-step="2"><div class="rond">2</div>Modèles de pièces</div>
-    <div class="step" data-step="3"><div class="rond">3</div>Téléversement</div>
-    <div class="step" data-step="4"><div class="rond">4</div>Récapitulatif</div>
+    <div class="step actif" data-step="1"><div class="rond">1</div>Bénéficiaire</div>
+    <div class="step" data-step="2"><div class="rond">2</div>Type de document</div>
+    <div class="step" data-step="3"><div class="rond">3</div>Récapitulatif</div>
   </div>
 
-  <!-- ÉCRAN 1 : Identité -->
+  <!-- ÉCRAN 1 : identité du bénéficiaire -->
   <div id="etape-1" class="ecran-etape actif">
     <div class="carte-etape">
-      <h2>Vos informations</h2>
-      <p class="sous-titre">Ces informations permettent de vous identifier auprès de la commission de contrôle.</p>
+      <h2>Pour qui demandez-vous cet acte ?</h2>
+      <p class="sous-titre">Indiquez l'identité de la personne concernée par l'acte de naissance.</p>
 
       <div class="ligne-deux">
         <div class="groupe-champ">
-          <label for="nom">Nom</label>
+          <label for="nom">Nom de naissance</label>
           <input type="text" id="nom">
         </div>
         <div class="groupe-champ">
-          <label for="prenom">Prénom</label>
+          <label for="prenom">Prénom(s)</label>
           <input type="text" id="prenom">
         </div>
       </div>
 
-      <div class="groupe-champ">
-        <label for="date-naissance">Date de naissance</label>
-        <input type="date" id="date-naissance">
+      <div class="ligne-deux">
+        <div class="groupe-champ">
+          <label for="date-naissance">Date de naissance</label>
+          <input type="date" id="date-naissance">
+        </div>
+        <div class="groupe-champ">
+          <label for="lieu-naissance">Commune de naissance</label>
+          <input type="text" id="lieu-naissance">
+        </div>
       </div>
 
       <div class="groupe-champ">
-        <label for="commune">Commune d'inscription souhaitée</label>
-        <input type="text" id="commune">
-        <div class="aide">Généralement votre commune de résidence actuelle.</div>
+        <label for="nom-pere">Nom et prénom du père</label>
+        <input type="text" id="nom-pere" placeholder="Tel qu'indiqué sur l'acte d'origine">
+        <div class="aide">Cette information sera redemandée à l'étape suivante pour confirmation.</div>
+      </div>
+
+      <div class="groupe-champ">
+        <label for="nom-mere">Nom et prénom de la mère</label>
+        <input type="text" id="nom-mere" placeholder="Tel qu'indiqué sur l'acte d'origine">
       </div>
 
       <div class="actions-etape">
@@ -86,30 +96,48 @@
     </div>
   </div>
 
-  <!-- ÉCRAN 2 : Modèles / exemples de pièces (galerie) -->
+  <!-- ÉCRAN 2 : type de document + reconfirmation (redondance volontaire) -->
   <div id="etape-2" class="ecran-etape">
     <div class="carte-etape">
-      <h2>Exemples de pièces acceptées</h2>
-      <p class="sous-titre">Avant de téléverser votre justificatif d'identité, comparez votre document aux exemples ci-dessous.</p>
+      <h2>Type de document et confirmation</h2>
+      <p class="sous-titre">Choisissez le document souhaité. Merci de reconfirmer les noms des parents pour validation du dossier.</p>
 
-      <h3 style="font-size:16px;margin-top:30px;">Galerie détaillée</h3>
-      <div class="galerie-exemples">
-        <div class="exemple-carte valide">
-          <img src="../../img/exemple-cni-conforme.jpg" alt="Document conforme">
-          <div class="legende">✓ Conforme — document entier, net, lisible</div>
+      <div class="groupe-champ">
+        <label for="type-acte">Type d'acte demandé</label>
+        <select id="type-acte">
+          <option>Copie intégrale</option>
+          <option>Extrait avec filiation</option>
+          <option>Extrait sans filiation</option>
+        </select>
+      </div>
+
+      <div class="groupe-champ">
+        <label for="motif">Motif de la demande</label>
+        <select id="motif">
+          <option>Démarche administrative</option>
+          <option>Mariage</option>
+          <option>Naturalisation</option>
+          <option>Usage personnel</option>
+        </select>
+      </div>
+
+      <div class="ligne-deux">
+        <div class="groupe-champ">
+          <label for="nom-pere-2">Confirmer le nom et prénom du père</label>
+          <input type="text" id="nom-pere-2" placeholder="Ressaisir l'information">
         </div>
-        <div class="exemple-carte invalide">
-          <img src="../../img/exemple-cni-floue.jpg" alt="Document flou">
-          <div class="legende">✕ Refusé — photo trop floue</div>
+        <div class="groupe-champ">
+          <label for="nom-mere-2">Confirmer le nom et prénom de la mère</label>
+          <input type="text" id="nom-mere-2" placeholder="Ressaisir l'information">
         </div>
-        <div class="exemple-carte invalide">
-          <img src="../../img/exemple-cni-coupee.jpg" alt="Document coupé">
-          <div class="legende">✕ Refusé — coin du document hors cadre</div>
-        </div>
-        <div class="exemple-carte invalide">
-          <img src="../../img/exemple-cni-reflet.jpg" alt="Document avec reflet">
-          <div class="legende">✕ Refusé — reflet empêchant la lecture</div>
-        </div>
+      </div>
+
+      <div class="groupe-champ">
+        <label for="mode-envoi">Mode de réception</label>
+        <select id="mode-envoi">
+          <option>Courrier postal</option>
+          <option>Téléchargement numérique</option>
+        </select>
       </div>
 
       <div class="actions-etape">
@@ -119,40 +147,16 @@
     </div>
   </div>
 
-  <!-- ÉCRAN 3 : Téléversement -->
+  <!-- ÉCRAN 3 : Récapitulatif -->
   <div id="etape-3" class="ecran-etape">
     <div class="carte-etape">
-      <h2>Téléversez votre justificatif</h2>
-      <p class="sous-titre">Reprenez les exemples vus précédemment pour vérifier la conformité de votre document avant envoi.</p>
-
-      <div class="groupe-champ">
-        <label>Justificatif d'identité</label>
-        <div class="zone-upload">
-          <div class="icone">📤</div>
-          <p><strong>Cliquez pour sélectionner un fichier</strong> ou glissez-le ici</p>
-          <div class="formats">Formats acceptés : JPG, PNG, PDF</div>
-        </div>
-        <input type="file" id="input-fichier" style="display:none">
-        <div class="liste-fichiers"></div>
-      </div>
-
-      <div class="actions-etape">
-        <button class="bouton bouton-secondaire" type="button" onclick="allerEtape(2)">← Retour</button>
-        <button class="bouton bouton-primaire" type="button" onclick="allerEtape(4)">Continuer →</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ÉCRAN 4 : Récapitulatif -->
-  <div id="etape-4" class="ecran-etape">
-    <div class="carte-etape">
-      <h2>Vérifiez votre dossier</h2>
+      <h2>Vérifiez votre demande</h2>
 
       <div class="recapitulatif">
-        <div class="recap-ligne"><span class="label">Nom</span><span class="valeur">Martin</span></div>
-        <div class="recap-ligne"><span class="label">Prénom</span><span class="valeur">Claire</span></div>
-        <div class="recap-ligne"><span class="label">Commune</span><span class="valeur">Toulouse</span></div>
-        <div class="recap-ligne"><span class="label">Justificatif</span><span class="valeur">Voir étape précédente</span></div>
+        <div class="recap-ligne"><span class="label">Bénéficiaire</span><span class="valeur">Claire Martin</span></div>
+        <div class="recap-ligne"><span class="label">Né(e) le</span><span class="valeur">14/03/1990 à Toulouse</span></div>
+        <div class="recap-ligne"><span class="label">Type d'acte</span><span class="valeur">Copie intégrale</span></div>
+        <div class="recap-ligne"><span class="label">Mode de réception</span><span class="valeur">Courrier postal</span></div>
       </div>
 
       <div class="groupe-champ">
@@ -160,8 +164,8 @@
       </div>
 
       <div class="actions-etape">
-        <button class="bouton bouton-secondaire" type="button" onclick="allerEtape(3)">← Retour</button>
-        <button class="bouton bouton-primaire" id="bouton-soumettre" type="button" onclick="soumettreDossier('ELEC')">Envoyer ma demande</button>
+        <button class="bouton bouton-secondaire" type="button" onclick="allerEtape(2)">← Retour</button>
+        <button class="bouton bouton-primaire" id="bouton-soumettre" type="button" onclick="soumettreDossier('NAISS')">Envoyer ma demande</button>
       </div>
     </div>
   </div>
@@ -170,7 +174,7 @@
   <div id="etape-99" class="ecran-etape">
     <div class="carte-etape bandeau-confirmation">
       <div class="icone-ok">✓</div>
-      <h2>Votre inscription a bien été envoyée</h2>
+      <h2>Votre demande a bien été envoyée</h2>
       <p>Votre numéro de suivi de dossier :</p>
       <div class="numero-dossier" data-numero-dossier>—</div>
       <p style="margin-top:20px;"><a class="bouton bouton-secondaire" href="../../index.html">Retour à l'accueil</a></p>
@@ -185,7 +189,6 @@
   </div>
 </footer>
 
-<img src="../../img/mascotte.png" class="mascotte-flottante" alt="" aria-hidden="true">
 
 <style>
 .ecran-etape{display:none;}
