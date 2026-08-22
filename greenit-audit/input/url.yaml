@@ -1,0 +1,19 @@
+# Liste des pages du site à auditer. Contrairement au projet gestoffices,
+# brief3-servicepublic est un site statique de démonstration sans
+# authentification : aucune action de connexion n'est nécessaire ici.
+
+- name: "Accueil"
+  url: "https://nadybell.github.io/brief3-servicepublic/"
+  screenshot: "screenshot-accueil.png"
+
+- name: "Carte d'identité — étape 1"
+  url: "https://nadybell.github.io/brief3-servicepublic/pages/carte-identite/etape-1.html"
+  screenshot: "screenshot-carte-identite.png"
+
+- name: "Acte de naissance — étape 1"
+  url: "https://nadybell.github.io/brief3-servicepublic/pages/acte-naissance/etape-1.html"
+  screenshot: "screenshot-acte-naissance.png"
+
+- name: "Inscription électorale — étape 1"
+  url: "https://nadybell.github.io/brief3-servicepublic/pages/inscription-electorale/etape-1.html"
+  screenshot: "screenshot-inscription-electorale.png"
