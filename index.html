@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>service-public-demo — Mes démarches en ligne</title>
+<meta name="description" content="Portail de démonstration pour effectuer vos démarches administratives en ligne.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bandeau-tricolore"><span></span><span></span><span></span></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="bloc-marque">
+      <span class="logo-rf">RÉPUBLIQUE<br><strong>FRANÇAISE</strong></span>
+      <span class="nom-service">Mes démarches en ligne</span>
+    </a>
+    <nav class="nav-principale">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#actualites">Actualités</a></li>
+        <li><a href="index.html#aide">Aide</a></li>
+      </ul>
+    </nav>
+    <div class="compte-utilisateur">
+      <div class="avatar-utilisateur">CM</div>
+      <span>Claire Martin</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Toutes vos démarches administratives, en un seul endroit</h1>
+      <p class="intro">Demandez une carte d'identité, inscrivez-vous sur les listes électorales ou obtenez un acte de naissance — sans vous déplacer, à votre rythme.</p>
+      <form class="barre-recherche" onsubmit="return false;">
+        <input type="text" placeholder="Rechercher une démarche (ex : passeport, état civil…)" aria-label="Rechercher une démarche">
+        <button type="submit">Rechercher</button>
+      </form>
+    </div>
+    <div class="hero-media">
+      <img src="img/hero-illustration.jpg" alt="Illustration d'un espace personnel de démarches en ligne" style="width:100%;display:block;">
+    </div>
+  </div>
+</section>
+
+<div class="chiffres-cles">
+  <div class="conteneur">
+    <div class="chiffres-grid">
+      <div>
+        <div class="chiffre" data-compteur-live>184 320</div>
+        <div class="chiffre-label">démarches effectuées en ligne aujourd'hui</div>
+      </div>
+      <div>
+        <div class="chiffre">3</div>
+        <div class="chiffre-label">services disponibles 100 % en ligne</div>
+      </div>
+      <div>
+        <div class="chiffre">24/7</div>
+        <div class="chiffre-label">accès à votre espace personnel</div>
+      </div>
+      <div>
+        <div class="chiffre">~12 min</div>
+        <div class="chiffre-label">durée moyenne d'une démarche</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="services" class="conteneur">
+  <div class="section-titre">
+    <h2>Vos services en ligne</h2>
+    <a class="lien-tout" href="#">Voir toutes les démarches →</a>
+  </div>
+
+  <div class="grille-services">
+
+    <a class="carte-service" href="pages/carte-identite/etape-1.html">
+      <div class="pictogramme">🪪</div>
+      <span class="badge-duree">≈ 15 min · pièces à fournir</span>
+      <h3>Demande de carte nationale d'identité</h3>
+      <p>Faites votre première demande ou un renouvellement de carte d'identité. Photo et justificatif de domicile à téléverser.</p>
+      <span class="fleche">Commencer la démarche →</span>
+    </a>
+
+    <a class="carte-service" href="pages/inscription-electorale/etape-1.html">
+      <div class="pictogramme">🗳️</div>
+      <span class="badge-duree">≈ 8 min · exemples fournis</span>
+      <h3>Inscription sur les listes électorales</h3>
+      <p>Inscrivez-vous pour pouvoir voter aux prochaines élections. Des exemples de pièces justificatives vous guident pas à pas.</p>
+      <span class="fleche">Commencer la démarche →</span>
+    </a>
+
+    <a class="carte-service" href="pages/acte-naissance/etape-1.html">
+      <div class="pictogramme">📄</div>
+      <span class="badge-duree">≈ 5 min</span>
+      <h3>Demande d'acte de naissance</h3>
+      <p>Obtenez une copie ou un extrait d'acte de naissance, à usage personnel ou administratif.</p>
+      <span class="fleche">Commencer la démarche →</span>
+    </a>
+
+  </div>
+</section>
+
+<section id="actualites" class="conteneur">
+  <div class="section-titre">
+    <h2>Actualités</h2>
+  </div>
+  <div class="bloc-actus">
+    <article class="carte-actu">
+      <img src="img/actu-1.jpg" alt="">
+      <div class="contenu">
+        <h4>Élections 2026 : les dates clés de l'inscription</h4>
+        <p>Retrouvez le calendrier complet pour vous inscrire à temps sur les listes électorales.</p>
+      </div>
+    </article>
+    <article class="carte-actu">
+      <img src="img/actu-2.jpg" alt="">
+      <div class="contenu">
+        <h4>Nouveaux horaires des guichets de proximité</h4>
+        <p>Les horaires d'accueil évoluent à partir du mois prochain dans plusieurs antennes.</p>
+      </div>
+    </article>
+    <article class="carte-actu">
+      <img src="img/actu-3.jpg" alt="">
+      <div class="contenu">
+        <h4>Simplification des démarches en ligne</h4>
+        <p>Moins de pièces justificatives demandées pour certaines démarches courantes.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="bandeau-partenaires">
+  <div class="piste-logos">
+    <img src="img/logo-1.png" alt="Ministère X"><img src="img/logo-2.png" alt="Région Y">
+    <img src="img/logo-3.png" alt="Caisse Z"><img src="img/logo-4.png" alt="Agence A">
+    <img src="img/logo-5.png" alt="Office B"><img src="img/logo-6.png" alt="Préfecture C">
+    <img src="img/logo-1.png" alt="Ministère X"><img src="img/logo-2.png" alt="Région Y">
+    <img src="img/logo-3.png" alt="Caisse Z"><img src="img/logo-4.png" alt="Agence A">
+    <img src="img/logo-5.png" alt="Office B"><img src="img/logo-6.png" alt="Préfecture C">
+  </div>
+</div>
+
+<section id="aide" class="conteneur">
+  <div class="section-titre"><h2>Besoin d'aide ?</h2></div>
+  <p style="max-width:680px;color:#444;">Notre assistance est disponible par téléphone et par messagerie pour vous accompagner dans vos démarches. Vous pouvez aussi consulter les questions fréquentes pour chaque service depuis sa page de présentation.</p>
+</section>
+
+<footer class="site-footer">
+  <div class="conteneur">
+    <div class="footer-grid">
+      <div>
+        <h4>Le site</h4>
+        <ul>
+          <li><a href="#">Qui sommes-nous</a></li>
+          <li><a href="#">Accessibilité : non conforme</a></li>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Données personnelles</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="pages/carte-identite/etape-1.html">Carte d'identité</a></li>
+          <li><a href="pages/inscription-electorale/etape-1.html">Listes électorales</a></li>
+          <li><a href="pages/acte-naissance/etape-1.html">Acte de naissance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Aide</h4>
+        <ul>
+          <li><a href="#">Questions fréquentes</a></li>
+          <li><a href="#">Contacter l'assistance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Suivez-nous</h4>
+        <ul>
+          <li><a href="#">Réseau social A</a></li>
+          <li><a href="#">Réseau social B</a></li>
+          <li><a href="#">Lettre d'information</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bas">
+      <span>© République Démo — site fictif à usage pédagogique</span>
+      <span>Plan du site · Cookies · Contact</span>
+    </div>
+  </div>
+</footer>
+
+<img src="img/mascotte.png" class="mascotte-flottante" alt="" aria-hidden="true">
+
+<script src="js/main.js"></script>
+</body>
+</html>

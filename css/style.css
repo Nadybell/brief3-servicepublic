@@ -1,0 +1,445 @@
+/* =========================================================
+   service-public-demo — feuille de style commune
+   NOTE PEDAGOGIQUE : ce fichier contient volontairement
+   des pratiques non optimisées (cf. fichier ECOCONCEPTION.md)
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@500;600;700;800&family=Archivo:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&family=Caveat:wght@500;600&display=swap');
+
+:root{
+  --bleu-france: #000091;
+  --bleu-clair: #6a6af4;
+  --rouge-marianne: #e1000f;
+  --noir: #1b1b35;
+  --gris-fond: #f6f6f6;
+  --gris-bordure: #ddd;
+  --blanc: #fff;
+  --ombre: 0 2px 6px rgba(0,0,18,.08);
+  --radius: 4px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:'Source Sans 3', Arial, sans-serif;
+  color:var(--noir);
+  background:var(--blanc);
+  line-height:1.5;
+  font-size:16px;
+}
+
+h1,h2,h3,h4{
+  font-family:'Archivo Expanded','Archivo',Arial,sans-serif;
+  font-weight:700;
+  color:var(--bleu-france);
+  margin-top:0;
+}
+
+a{color:var(--bleu-france);}
+img{max-width:100%;}
+
+/* Bandeau tricolore signature */
+.bandeau-tricolore{
+  height:6px;
+  display:flex;
+}
+.bandeau-tricolore span{flex:1;}
+.bandeau-tricolore span:nth-child(1){background:var(--bleu-france);}
+.bandeau-tricolore span:nth-child(2){background:#fff;}
+.bandeau-tricolore span:nth-child(3){background:var(--rouge-marianne);}
+
+/* Header */
+header.site-header{
+  border-bottom:1px solid var(--gris-bordure);
+  background:#fff;
+}
+.header-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:18px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.bloc-marque{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  text-decoration:none;
+  color:var(--noir);
+}
+.bloc-marque .logo-rf{
+  font-family:'Archivo Expanded';
+  font-weight:800;
+  font-size:13px;
+  line-height:1.15;
+  letter-spacing:.02em;
+  border-left:4px solid var(--bleu-france);
+  padding-left:10px;
+}
+.bloc-marque .logo-rf strong{display:block; color:var(--bleu-france);}
+.nom-service{
+  font-family:'Archivo Expanded';
+  font-weight:700;
+  font-size:20px;
+}
+nav.nav-principale ul{
+  list-style:none;
+  display:flex;
+  gap:28px;
+  margin:0;
+  padding:0;
+  font-weight:600;
+}
+nav.nav-principale a{
+  text-decoration:none;
+  color:var(--noir);
+  padding:6px 2px;
+  border-bottom:2px solid transparent;
+}
+nav.nav-principale a:hover, nav.nav-principale a:focus{
+  border-bottom:2px solid var(--bleu-france);
+}
+.compte-utilisateur{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+}
+.avatar-utilisateur{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--bleu-france);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+}
+
+/* Conteneur générique */
+.conteneur{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+/* Hero */
+.hero{
+  background:linear-gradient(120deg, var(--bleu-france), #2b2bd6 60%, var(--bleu-clair));
+  color:#fff;
+  padding:64px 0 80px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-inner{
+  max-width:1200px;margin:0 auto;padding:0 24px;
+  display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
+}
+.hero h1{color:#fff;font-size:clamp(28px,4vw,44px);line-height:1.1;}
+.hero p.intro{font-size:18px;max-width:560px;color:#e8e8ff;}
+.hero .deco-blobs{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.5;}
+.hero-media{
+  position:relative;z-index:1;
+  border-radius:10px;overflow:hidden;
+  box-shadow:0 20px 50px rgba(0,0,40,.35);
+}
+
+/* Bandeau de recherche / raccourcis */
+.barre-recherche{
+  margin-top:28px;
+  display:flex;
+  max-width:520px;
+  box-shadow:var(--ombre);
+  border-radius:6px;
+  overflow:hidden;
+}
+.barre-recherche input{
+  flex:1;border:none;padding:14px 16px;font-size:15px;
+}
+.barre-recherche button{
+  border:none;background:var(--rouge-marianne);color:#fff;
+  padding:0 22px;font-weight:700;cursor:pointer;
+}
+
+/* Sections génériques */
+section{padding:56px 0;}
+.section-titre{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:28px;flex-wrap:wrap;gap:10px;
+}
+.section-titre h2{font-size:26px;margin:0;}
+.section-titre .lien-tout{font-weight:600;font-size:14px;}
+
+/* Grille de services */
+.grille-services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:24px;
+}
+.carte-service{
+  background:#fff;
+  border:1px solid var(--gris-bordure);
+  border-radius:8px;
+  padding:26px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  text-decoration:none;
+  color:var(--noir);
+  transition:transform .35s ease, box-shadow .35s ease;
+  position:relative;
+}
+.carte-service:hover{
+  transform:translateY(-6px) scale(1.012);
+  box-shadow:0 18px 40px rgba(0,0,60,.12);
+}
+.carte-service .pictogramme{
+  width:52px;height:52px;border-radius:10px;
+  background:var(--gris-fond);
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;
+}
+.carte-service h3{font-size:18px;margin:0;}
+.carte-service p{margin:0;color:#444;font-size:14.5px;}
+.carte-service .badge-duree{
+  align-self:flex-start;
+  background:#eef0ff;color:var(--bleu-france);
+  font-size:12px;font-weight:700;
+  padding:4px 10px;border-radius:20px;
+}
+.carte-service .fleche{
+  margin-top:auto;font-weight:700;color:var(--rouge-marianne);
+}
+
+/* Bloc actualités décoratif (lourd, non recadré) */
+.bloc-actus{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.carte-actu{border-radius:8px;overflow:hidden;border:1px solid var(--gris-bordure);background:#fff;}
+.carte-actu img{display:block;width:100%;height:220px;object-fit:cover;}
+.carte-actu .contenu{padding:16px;}
+.carte-actu h4{font-size:15.5px;margin:0 0 8px;}
+.carte-actu p{font-size:13.5px;color:#555;margin:0;}
+
+/* Bandeau chiffres clés animés (décoratif) */
+.chiffres-cles{
+  background:var(--gris-fond);
+  padding:40px 0;
+}
+.chiffres-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;
+}
+.chiffre{font-family:'Archivo Expanded';font-size:38px;font-weight:800;color:var(--bleu-france);}
+.chiffre-label{font-size:13.5px;color:#555;}
+
+/* Carrousel partenaires (autoplay, décoratif) */
+.bandeau-partenaires{
+  overflow:hidden;
+  padding:30px 0;
+  border-top:1px solid var(--gris-bordure);
+  border-bottom:1px solid var(--gris-bordure);
+}
+.piste-logos{
+  display:flex;gap:60px;
+  width:max-content;
+  animation:defilement 22s linear infinite;
+}
+.piste-logos img{height:46px;width:auto;filter:grayscale(100%);opacity:.7;}
+@keyframes defilement{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+/* Footer */
+footer.site-footer{
+  background:#1b1b35;
+  color:#cfd0e6;
+  padding:50px 0 24px;
+  margin-top:40px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:30px;
+  margin-bottom:30px;
+}
+.footer-grid h4{color:#fff;font-size:14px;margin-bottom:14px;}
+.footer-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
+.footer-grid a{color:#cfd0e6;text-decoration:none;font-size:14px;}
+.footer-grid a:hover{color:#fff;text-decoration:underline;}
+.footer-bas{
+  border-top:1px solid #33334d;
+  padding-top:20px;font-size:12.5px;color:#9a9bc4;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+
+/* =================== FORMULAIRES / PARCOURS =================== */
+.fil-ariane{
+  font-size:13px;color:#555;margin:18px 0;
+}
+.fil-ariane a{color:#555;text-decoration:none;}
+.fil-ariane a:hover{text-decoration:underline;}
+
+.entete-service{
+  background:var(--gris-fond);
+  padding:36px 0 28px;
+  border-bottom:1px solid var(--gris-bordure);
+}
+.entete-service h1{font-size:30px;margin-bottom:8px;}
+.entete-service .meta{display:flex;gap:18px;font-size:13.5px;color:#555;flex-wrap:wrap;}
+
+.zone-formulaire{
+  max-width:760px;
+  margin:0 auto;
+  padding:40px 24px 80px;
+}
+
+/* Stepper */
+.stepper{
+  display:flex;justify-content:space-between;
+  margin-bottom:40px;
+  position:relative;
+}
+.stepper::before{
+  content:"";position:absolute;top:14px;left:0;right:0;height:2px;
+  background:var(--gris-bordure);z-index:0;
+}
+.step{
+  flex:1;text-align:center;position:relative;z-index:1;font-size:12.5px;color:#888;
+}
+.step .rond{
+  width:30px;height:30px;border-radius:50%;
+  background:#fff;border:2px solid var(--gris-bordure);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 8px;font-weight:700;color:#888;
+}
+.step.actif .rond{border-color:var(--bleu-france);color:var(--bleu-france);}
+.step.actif{color:var(--bleu-france);font-weight:700;}
+.step.fait .rond{background:var(--bleu-france);border-color:var(--bleu-france);color:#fff;}
+
+.carte-etape{
+  background:#fff;border:1px solid var(--gris-bordure);border-radius:8px;
+  padding:32px;box-shadow:var(--ombre);
+}
+.carte-etape h2{font-size:22px;margin-bottom:6px;}
+.carte-etape .sous-titre{color:#555;margin-bottom:26px;font-size:14.5px;}
+
+.groupe-champ{margin-bottom:22px;}
+.groupe-champ label{
+  display:block;font-weight:600;margin-bottom:6px;font-size:14.5px;
+}
+.groupe-champ .aide{font-size:12.5px;color:#666;margin-top:5px;}
+.groupe-champ input[type=text],
+.groupe-champ input[type=email],
+.groupe-champ input[type=tel],
+.groupe-champ input[type=date],
+.groupe-champ select,
+.groupe-champ textarea{
+  width:100%;padding:11px 13px;border:1px solid #929292;border-radius:4px;
+  font-size:15px;font-family:inherit;
+}
+.groupe-champ input:focus,.groupe-champ select:focus,.groupe-champ textarea:focus{
+  outline:2px solid var(--bleu-clair);outline-offset:1px;
+}
+.ligne-deux{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+
+.actions-etape{
+  display:flex;justify-content:space-between;margin-top:34px;
+  padding-top:22px;border-top:1px solid var(--gris-bordure);
+}
+.bouton{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 26px;border-radius:5px;font-weight:700;font-size:15px;
+  border:none;cursor:pointer;text-decoration:none;
+}
+.bouton-primaire{background:var(--bleu-france);color:#fff;}
+.bouton-primaire:hover{background:#1212a8;}
+.bouton-secondaire{background:#fff;color:var(--bleu-france);border:1px solid var(--bleu-france);}
+.bouton-secondaire:hover{background:#eef0ff;}
+
+/* Zone upload */
+.zone-upload{
+  border:2px dashed #9a9a9a;border-radius:8px;
+  padding:36px;text-align:center;background:#fafafa;
+  cursor:pointer;transition:border-color .2s;
+}
+.zone-upload:hover{border-color:var(--bleu-france);}
+.zone-upload .icone{font-size:34px;}
+.zone-upload .formats{font-size:12px;color:#777;margin-top:10px;}
+.liste-fichiers{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+.fichier-item{
+  display:flex;align-items:center;gap:10px;
+  background:#fff;border:1px solid var(--gris-bordure);
+  padding:10px 14px;border-radius:6px;font-size:14px;
+}
+.fichier-item .miniature{
+  width:54px;height:54px;object-fit:cover;border-radius:4px;border:1px solid var(--gris-bordure);
+}
+.fichier-item .nom{flex:1;}
+.fichier-item .supprimer{color:var(--rouge-marianne);cursor:pointer;font-weight:700;border:none;background:none;}
+
+/* Galerie d'exemples (images non optimisées) */
+.galerie-exemples{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:20px 0 28px;
+}
+.exemple-carte{border:1px solid var(--gris-bordure);border-radius:8px;overflow:hidden;background:#fff;}
+.exemple-carte img{width:100%;display:block;}
+.exemple-carte .legende{padding:10px 14px;font-size:13px;color:#444;border-top:1px solid var(--gris-bordure);}
+.exemple-carte.valide .legende{color:#1e7d34;font-weight:600;}
+.exemple-carte.invalide .legende{color:var(--rouge-marianne);font-weight:600;}
+
+/* Carrousel d'exemples plein format (autoplay) */
+.carrousel-exemples{position:relative;margin:20px 0 30px;border-radius:8px;overflow:hidden;border:1px solid var(--gris-bordure);}
+.carrousel-piste{display:flex;transition:transform .6s ease;}
+.carrousel-piste img{width:100%;flex:0 0 100%;display:block;}
+.carrousel-points{display:flex;justify-content:center;gap:8px;padding:12px;background:#fff;}
+.carrousel-points span{width:8px;height:8px;border-radius:50%;background:#ccc;}
+.carrousel-points span.actif{background:var(--bleu-france);}
+
+.recapitulatif{
+  background:var(--gris-fond);border-radius:8px;padding:24px;margin-bottom:24px;
+}
+.recap-ligne{
+  display:flex;justify-content:space-between;padding:10px 0;
+  border-bottom:1px solid #e2e2e2;font-size:14.5px;
+}
+.recap-ligne:last-child{border-bottom:none;}
+.recap-ligne .label{color:#555;}
+.recap-ligne .valeur{font-weight:600;}
+
+.bandeau-confirmation{
+  text-align:center;padding:50px 24px;
+}
+.bandeau-confirmation .icone-ok{
+  width:70px;height:70px;border-radius:50%;background:#1e7d34;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 20px;
+}
+.numero-dossier{
+  display:inline-block;background:var(--gris-fond);padding:10px 22px;border-radius:6px;
+  font-family:'Archivo Expanded';font-weight:700;letter-spacing:.05em;margin:14px 0;
+}
+
+.bandeau-erreur{
+  background:#fdeaea;border:1px solid var(--rouge-marianne);color:#8a0009;
+  padding:14px 18px;border-radius:6px;margin-bottom:22px;font-size:14.5px;
+}
+
+/* Note flottante mascotte décorative (lourde, inutile) */
+.mascotte-flottante{
+  position:fixed;bottom:24px;right:24px;
+  width:90px;z-index:50;
+  animation:flotte 3.4s ease-in-out infinite;
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,.25));
+}
+@keyframes flotte{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-14px);}
+}
+
+@media (max-width:880px){
+  .hero-inner{grid-template-columns:1fr;}
+  .bloc-actus{grid-template-columns:1fr;}
+  .chiffres-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:repeat(2,1fr);}
+  .ligne-deux{grid-template-columns:1fr;}
+  .galerie-exemples{grid-template-columns:1fr;}
+  .mascotte-flottante{width:60px;}
+}

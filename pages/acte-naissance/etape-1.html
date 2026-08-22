@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demande d'acte de naissance — Mes démarches en ligne</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<div class="bandeau-tricolore"><span></span><span></span><span></span></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="../../index.html" class="bloc-marque">
+      <span class="logo-rf">RÉPUBLIQUE<br><strong>FRANÇAISE</strong></span>
+      <span class="nom-service">Mes démarches en ligne</span>
+    </a>
+    <nav class="nav-principale">
+      <ul>
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../../index.html#services">Services</a></li>
+        <li><a href="../../index.html#aide">Aide</a></li>
+      </ul>
+    </nav>
+    <div class="compte-utilisateur">
+      <div class="avatar-utilisateur">CM</div>
+      <span>Claire Martin</span>
+    </div>
+  </div>
+</header>
+
+<div class="entete-service">
+  <div class="conteneur">
+    <div class="fil-ariane"><a href="../../index.html">Accueil</a> › <a href="../../index.html#services">Services</a> › Acte de naissance</div>
+    <h1>Demande d'acte de naissance</h1>
+    <div class="meta">
+      <span>⏱ Durée estimée : 5 minutes</span>
+      <span>📨 Envoi postal ou numérique</span>
+      <span>💾 Progression non sauvegardée</span>
+    </div>
+  </div>
+</div>
+
+<div class="zone-formulaire">
+
+  <div class="stepper">
+    <div class="step actif" data-step="1"><div class="rond">1</div>Bénéficiaire</div>
+    <div class="step" data-step="2"><div class="rond">2</div>Type de document</div>
+    <div class="step" data-step="3"><div class="rond">3</div>Récapitulatif</div>
+  </div>
+
+  <!-- ÉCRAN 1 : identité du bénéficiaire -->
+  <div id="etape-1" class="ecran-etape actif">
+    <div class="carte-etape">
+      <h2>Pour qui demandez-vous cet acte ?</h2>
+      <p class="sous-titre">Indiquez l'identité de la personne concernée par l'acte de naissance.</p>
+
+      <div class="ligne-deux">
+        <div class="groupe-champ">
+          <label for="nom">Nom de naissance</label>
+          <input type="text" id="nom">
+        </div>
+        <div class="groupe-champ">
+          <label for="prenom">Prénom(s)</label>
+          <input type="text" id="prenom">
+        </div>
+      </div>
+
+      <div class="ligne-deux">
+        <div class="groupe-champ">
+          <label for="date-naissance">Date de naissance</label>
+          <input type="date" id="date-naissance">
+        </div>
+        <div class="groupe-champ">
+          <label for="lieu-naissance">Commune de naissance</label>
+          <input type="text" id="lieu-naissance">
+        </div>
+      </div>
+
+      <div class="groupe-champ">
+        <label for="nom-pere">Nom et prénom du père</label>
+        <input type="text" id="nom-pere" placeholder="Tel qu'indiqué sur l'acte d'origine">
+        <div class="aide">Cette information sera redemandée à l'étape suivante pour confirmation.</div>
+      </div>
+
+      <div class="groupe-champ">
+        <label for="nom-mere">Nom et prénom de la mère</label>
+        <input type="text" id="nom-mere" placeholder="Tel qu'indiqué sur l'acte d'origine">
+      </div>
+
+      <div class="actions-etape">
+        <span></span>
+        <button class="bouton bouton-primaire" type="button" onclick="allerEtape(2)">Continuer →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 2 : type de document + reconfirmation (redondance volontaire) -->
+  <div id="etape-2" class="ecran-etape">
+    <div class="carte-etape">
+      <h2>Type de document et confirmation</h2>
+      <p class="sous-titre">Choisissez le document souhaité. Merci de reconfirmer les noms des parents pour validation du dossier.</p>
+
+      <div class="groupe-champ">
+        <label for="type-acte">Type d'acte demandé</label>
+        <select id="type-acte">
+          <option>Copie intégrale</option>
+          <option>Extrait avec filiation</option>
+          <option>Extrait sans filiation</option>
+        </select>
+      </div>
+
+      <div class="groupe-champ">
+        <label for="motif">Motif de la demande</label>
+        <select id="motif">
+          <option>Démarche administrative</option>
+          <option>Mariage</option>
+          <option>Naturalisation</option>
+          <option>Usage personnel</option>
+        </select>
+      </div>
+
+      <div class="ligne-deux">
+        <div class="groupe-champ">
+          <label for="nom-pere-2">Confirmer le nom et prénom du père</label>
+          <input type="text" id="nom-pere-2" placeholder="Ressaisir l'information">
+        </div>
+        <div class="groupe-champ">
+          <label for="nom-mere-2">Confirmer le nom et prénom de la mère</label>
+          <input type="text" id="nom-mere-2" placeholder="Ressaisir l'information">
+        </div>
+      </div>
+
+      <div class="groupe-champ">
+        <label for="mode-envoi">Mode de réception</label>
+        <select id="mode-envoi">
+          <option>Courrier postal</option>
+          <option>Téléchargement numérique</option>
+        </select>
+      </div>
+
+      <div class="actions-etape">
+        <button class="bouton bouton-secondaire" type="button" onclick="allerEtape(1)">← Retour</button>
+        <button class="bouton bouton-primaire" type="button" onclick="allerEtape(3)">Continuer →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 3 : Récapitulatif -->
+  <div id="etape-3" class="ecran-etape">
+    <div class="carte-etape">
+      <h2>Vérifiez votre demande</h2>
+
+      <div class="recapitulatif">
+        <div class="recap-ligne"><span class="label">Bénéficiaire</span><span class="valeur">Claire Martin</span></div>
+        <div class="recap-ligne"><span class="label">Né(e) le</span><span class="valeur">14/03/1990 à Toulouse</span></div>
+        <div class="recap-ligne"><span class="label">Type d'acte</span><span class="valeur">Copie intégrale</span></div>
+        <div class="recap-ligne"><span class="label">Mode de réception</span><span class="valeur">Courrier postal</span></div>
+      </div>
+
+      <div class="groupe-champ">
+        <label><input type="checkbox" checked style="width:auto;margin-right:8px;">Je certifie l'exactitude de ces informations.</label>
+      </div>
+
+      <div class="actions-etape">
+        <button class="bouton bouton-secondaire" type="button" onclick="allerEtape(2)">← Retour</button>
+        <button class="bouton bouton-primaire" id="bouton-soumettre" type="button" onclick="soumettreDossier('NAISS')">Envoyer ma demande</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 99 : Confirmation -->
+  <div id="etape-99" class="ecran-etape">
+    <div class="carte-etape bandeau-confirmation">
+      <div class="icone-ok">✓</div>
+      <h2>Votre demande a bien été envoyée</h2>
+      <p>Votre numéro de suivi de dossier :</p>
+      <div class="numero-dossier" data-numero-dossier>—</div>
+      <p style="margin-top:20px;"><a class="bouton bouton-secondaire" href="../../index.html">Retour à l'accueil</a></p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="conteneur footer-bas" style="border-top:none;">
+    <span>© République Démo — site fictif à usage pédagogique</span>
+  </div>
+</footer>
+
+<img src="../../img/mascotte.png" class="mascotte-flottante" alt="" aria-hidden="true">
+
+<style>
+.ecran-etape{display:none;}
+.ecran-etape.actif{display:block;}
+</style>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>

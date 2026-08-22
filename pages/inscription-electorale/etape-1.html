@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscription sur les listes électorales — Mes démarches en ligne</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<div class="bandeau-tricolore"><span></span><span></span><span></span></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="../../index.html" class="bloc-marque">
+      <span class="logo-rf">RÉPUBLIQUE<br><strong>FRANÇAISE</strong></span>
+      <span class="nom-service">Mes démarches en ligne</span>
+    </a>
+    <nav class="nav-principale">
+      <ul>
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../../index.html#services">Services</a></li>
+        <li><a href="../../index.html#aide">Aide</a></li>
+      </ul>
+    </nav>
+    <div class="compte-utilisateur">
+      <div class="avatar-utilisateur">CM</div>
+      <span>Claire Martin</span>
+    </div>
+  </div>
+</header>
+
+<div class="entete-service">
+  <div class="conteneur">
+    <div class="fil-ariane"><a href="../../index.html">Accueil</a> › <a href="../../index.html#services">Services</a> › Listes électorales</div>
+    <h1>Inscription sur les listes électorales</h1>
+    <div class="meta">
+      <span>⏱ Durée estimée : 8 minutes</span>
+      <span>🖼️ Exemples de pièces fournis</span>
+      <span>💾 Progression non sauvegardée</span>
+    </div>
+  </div>
+</div>
+
+<div class="zone-formulaire">
+
+  <div class="stepper">
+    <div class="step actif" data-step="1"><div class="rond">1</div>Identité</div>
+    <div class="step" data-step="2"><div class="rond">2</div>Modèles de pièces</div>
+    <div class="step" data-step="3"><div class="rond">3</div>Téléversement</div>
+    <div class="step" data-step="4"><div class="rond">4</div>Récapitulatif</div>
+  </div>
+
+  <!-- ÉCRAN 1 : Identité -->
+  <div id="etape-1" class="ecran-etape actif">
+    <div class="carte-etape">
+      <h2>Vos informations</h2>
+      <p class="sous-titre">Ces informations permettent de vous identifier auprès de la commission de contrôle.</p>
+
+      <div class="ligne-deux">
+        <div class="groupe-champ">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom">
+        </div>
+        <div class="groupe-champ">
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom">
+        </div>
+      </div>
+
+      <div class="groupe-champ">
+        <label for="date-naissance">Date de naissance</label>
+        <input type="date" id="date-naissance">
+      </div>
+
+      <div class="groupe-champ">
+        <label for="commune">Commune d'inscription souhaitée</label>
+        <input type="text" id="commune">
+        <div class="aide">Généralement votre commune de résidence actuelle.</div>
+      </div>
+
+      <div class="actions-etape">
+        <span></span>
+        <button class="bouton bouton-primaire" type="button" onclick="allerEtape(2)">Continuer →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 2 : Modèles / exemples de pièces (galerie + carrousel) -->
+  <div id="etape-2" class="ecran-etape">
+    <div class="carte-etape">
+      <h2>Exemples de pièces acceptées</h2>
+      <p class="sous-titre">Avant de téléverser votre justificatif d'identité, comparez votre document aux exemples ci-dessous.</p>
+
+      <h3 style="font-size:16px;">Aperçu en images (défilement automatique)</h3>
+      <div class="carrousel-exemples">
+        <div class="carrousel-piste">
+          <img src="../../img/exemple-cni-conforme.jpg" alt="Exemple de carte d'identité conforme : nette, entière, sans reflet">
+          <img src="../../img/exemple-cni-floue.jpg" alt="Exemple non conforme : photo floue">
+          <img src="../../img/exemple-cni-coupee.jpg" alt="Exemple non conforme : document coupé en haut">
+          <img src="../../img/exemple-cni-reflet.jpg" alt="Exemple non conforme : reflet de lumière sur le document">
+        </div>
+        <div class="carrousel-points">
+          <span class="actif"></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <h3 style="font-size:16px;margin-top:30px;">Galerie détaillée</h3>
+      <div class="galerie-exemples">
+        <div class="exemple-carte valide">
+          <img src="../../img/exemple-cni-conforme.jpg" alt="Document conforme">
+          <div class="legende">✓ Conforme — document entier, net, lisible</div>
+        </div>
+        <div class="exemple-carte invalide">
+          <img src="../../img/exemple-cni-floue.jpg" alt="Document flou">
+          <div class="legende">✕ Refusé — photo trop floue</div>
+        </div>
+        <div class="exemple-carte invalide">
+          <img src="../../img/exemple-cni-coupee.jpg" alt="Document coupé">
+          <div class="legende">✕ Refusé — coin du document hors cadre</div>
+        </div>
+        <div class="exemple-carte invalide">
+          <img src="../../img/exemple-cni-reflet.jpg" alt="Document avec reflet">
+          <div class="legende">✕ Refusé — reflet empêchant la lecture</div>
+        </div>
+      </div>
+
+      <div class="actions-etape">
+        <button class="bouton bouton-secondaire" type="button" onclick="allerEtape(1)">← Retour</button>
+        <button class="bouton bouton-primaire" type="button" onclick="allerEtape(3)">Continuer →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 3 : Téléversement -->
+  <div id="etape-3" class="ecran-etape">
+    <div class="carte-etape">
+      <h2>Téléversez votre justificatif</h2>
+      <p class="sous-titre">Reprenez les exemples vus précédemment pour vérifier la conformité de votre document avant envoi.</p>
+
+      <div class="groupe-champ">
+        <label>Justificatif d'identité</label>
+        <div class="zone-upload">
+          <div class="icone">📤</div>
+          <p><strong>Cliquez pour sélectionner un fichier</strong> ou glissez-le ici</p>
+          <div class="formats">Formats acceptés : JPG, PNG, PDF</div>
+        </div>
+        <input type="file" id="input-fichier" style="display:none">
+        <div class="liste-fichiers"></div>
+      </div>
+
+      <div class="actions-etape">
+        <button class="bouton bouton-secondaire" type="button" onclick="allerEtape(2)">← Retour</button>
+        <button class="bouton bouton-primaire" type="button" onclick="allerEtape(4)">Continuer →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 4 : Récapitulatif -->
+  <div id="etape-4" class="ecran-etape">
+    <div class="carte-etape">
+      <h2>Vérifiez votre dossier</h2>
+
+      <div class="recapitulatif">
+        <div class="recap-ligne"><span class="label">Nom</span><span class="valeur">Martin</span></div>
+        <div class="recap-ligne"><span class="label">Prénom</span><span class="valeur">Claire</span></div>
+        <div class="recap-ligne"><span class="label">Commune</span><span class="valeur">Toulouse</span></div>
+        <div class="recap-ligne"><span class="label">Justificatif</span><span class="valeur">Voir étape précédente</span></div>
+      </div>
+
+      <div class="groupe-champ">
+        <label><input type="checkbox" checked style="width:auto;margin-right:8px;">Je certifie l'exactitude de ces informations.</label>
+      </div>
+
+      <div class="actions-etape">
+        <button class="bouton bouton-secondaire" type="button" onclick="allerEtape(3)">← Retour</button>
+        <button class="bouton bouton-primaire" id="bouton-soumettre" type="button" onclick="soumettreDossier('ELEC')">Envoyer ma demande</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 99 : Confirmation -->
+  <div id="etape-99" class="ecran-etape">
+    <div class="carte-etape bandeau-confirmation">
+      <div class="icone-ok">✓</div>
+      <h2>Votre inscription a bien été envoyée</h2>
+      <p>Votre numéro de suivi de dossier :</p>
+      <div class="numero-dossier" data-numero-dossier>—</div>
+      <p style="margin-top:20px;"><a class="bouton bouton-secondaire" href="../../index.html">Retour à l'accueil</a></p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="conteneur footer-bas" style="border-top:none;">
+    <span>© République Démo — site fictif à usage pédagogique</span>
+  </div>
+</footer>
+
+<img src="../../img/mascotte.png" class="mascotte-flottante" alt="" aria-hidden="true">
+
+<style>
+.ecran-etape{display:none;}
+.ecran-etape.actif{display:block;}
+</style>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demande de carte d'identité — Mes démarches en ligne</title>
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<div class="bandeau-tricolore"><span></span><span></span><span></span></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="../../index.html" class="bloc-marque">
+      <span class="logo-rf">RÉPUBLIQUE<br><strong>FRANÇAISE</strong></span>
+      <span class="nom-service">Mes démarches en ligne</span>
+    </a>
+    <nav class="nav-principale">
+      <ul>
+        <li><a href="../../index.html">Accueil</a></li>
+        <li><a href="../../index.html#services">Services</a></li>
+        <li><a href="../../index.html#aide">Aide</a></li>
+      </ul>
+    </nav>
+    <div class="compte-utilisateur">
+      <div class="avatar-utilisateur">CM</div>
+      <span>Claire Martin</span>
+    </div>
+  </div>
+</header>
+
+<div class="entete-service">
+  <div class="conteneur">
+    <div class="fil-ariane"><a href="../../index.html">Accueil</a> › <a href="../../index.html#services">Services</a> › Carte d'identité</div>
+    <h1>Demande de carte nationale d'identité</h1>
+    <div class="meta">
+      <span>⏱ Durée estimée : 15 minutes</span>
+      <span>📎 Pièces à téléverser</span>
+      <span>💾 Progression non sauvegardée</span>
+    </div>
+  </div>
+</div>
+
+<div class="zone-formulaire">
+
+  <div class="stepper">
+    <div class="step actif" data-step="1"><div class="rond">1</div>Identité</div>
+    <div class="step" data-step="2"><div class="rond">2</div>État civil</div>
+    <div class="step" data-step="3"><div class="rond">3</div>Pièces justificatives</div>
+    <div class="step" data-step="4"><div class="rond">4</div>Récapitulatif</div>
+  </div>
+
+  <!-- ÉCRAN 1 : Identité -->
+  <div id="etape-1" class="ecran-etape actif">
+    <div class="carte-etape">
+      <h2>Vos informations d'identité</h2>
+      <p class="sous-titre">Renseignez votre identité telle qu'elle figure sur votre carte d'identité actuelle ou votre acte de naissance.</p>
+
+      <div class="groupe-champ">
+        <label for="civilite">Civilité</label>
+        <select id="civilite">
+          <option>Madame</option>
+          <option>Monsieur</option>
+        </select>
+      </div>
+
+      <div class="ligne-deux">
+        <div class="groupe-champ">
+          <label for="nom">Nom de naissance</label>
+          <input type="text" id="nom">
+        </div>
+        <div class="groupe-champ">
+          <label for="prenom">Prénom(s)</label>
+          <input type="text" id="prenom">
+        </div>
+      </div>
+
+      <div class="groupe-champ">
+        <label for="nom-usage">Nom d'usage (si différent)</label>
+        <input type="text" id="nom-usage">
+        <div class="aide">Laissez vide si vous utilisez votre nom de naissance.</div>
+      </div>
+
+      <div class="ligne-deux">
+        <div class="groupe-champ">
+          <label for="date-naissance">Date de naissance</label>
+          <input type="date" id="date-naissance">
+        </div>
+        <div class="groupe-champ">
+          <label for="lieu-naissance">Lieu de naissance</label>
+          <input type="text" id="lieu-naissance">
+        </div>
+      </div>
+
+      <div class="actions-etape">
+        <span></span>
+        <button class="bouton bouton-primaire" type="button" onclick="allerEtape(2)">Continuer →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 2 : État civil / adresse -->
+  <div id="etape-2" class="ecran-etape">
+    <div class="carte-etape">
+      <h2>Votre situation et votre adresse</h2>
+      <p class="sous-titre">Ces informations doivent correspondre à votre justificatif de domicile.</p>
+
+      <div class="groupe-champ">
+        <label for="adresse">Adresse</label>
+        <input type="text" id="adresse">
+      </div>
+
+      <div class="ligne-deux">
+        <div class="groupe-champ">
+          <label for="cp">Code postal</label>
+          <input type="text" id="cp">
+        </div>
+        <div class="groupe-champ">
+          <label for="ville">Ville</label>
+          <input type="text" id="ville">
+        </div>
+      </div>
+
+      <div class="groupe-champ">
+        <label for="situation">Situation familiale</label>
+        <select id="situation">
+          <option>Célibataire</option>
+          <option>Marié(e)</option>
+          <option>Pacsé(e)</option>
+          <option>Divorcé(e)</option>
+          <option>Veuf/Veuve</option>
+        </select>
+      </div>
+
+      <div class="groupe-champ">
+        <label for="telephone">Téléphone</label>
+        <input type="tel" id="telephone">
+      </div>
+
+      <div class="actions-etape">
+        <button class="bouton bouton-secondaire" type="button" onclick="allerEtape(1)">← Retour</button>
+        <button class="bouton bouton-primaire" type="button" onclick="allerEtape(3)">Continuer →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 3 : Pièces justificatives (upload) -->
+  <div id="etape-3" class="ecran-etape">
+    <div class="carte-etape">
+      <h2>Pièces justificatives</h2>
+      <p class="sous-titre">Téléversez une photo d'identité récente et votre justificatif de domicile. Les fichiers sont conservés tels que vous les envoyez, sans compression.</p>
+
+      <div class="groupe-champ">
+        <label>Photo d'identité et justificatif de domicile</label>
+        <div class="zone-upload">
+          <div class="icone">📤</div>
+          <p><strong>Cliquez pour sélectionner vos fichiers</strong> ou glissez-les ici</p>
+          <div class="formats">Formats acceptés : JPG, PNG, PDF, HEIC, TIFF — sans limite de taille indiquée</div>
+        </div>
+        <input type="file" id="input-fichier" multiple style="display:none">
+        <div class="liste-fichiers"></div>
+        <div class="aide">Astuce : si votre photo prise au téléphone est très volumineuse, elle sera tout de même acceptée et envoyée dans sa résolution d'origine.</div>
+      </div>
+
+      <div class="actions-etape">
+        <button class="bouton bouton-secondaire" type="button" onclick="allerEtape(2)">← Retour</button>
+        <button class="bouton bouton-primaire" type="button" onclick="allerEtape(4)">Continuer →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 4 : Récapitulatif -->
+  <div id="etape-4" class="ecran-etape">
+    <div class="carte-etape">
+      <h2>Vérifiez votre dossier</h2>
+      <p class="sous-titre">Relisez les informations avant l'envoi définitif. Toute erreur après validation nécessitera de recommencer la démarche depuis le début.</p>
+
+      <div class="recapitulatif">
+        <div class="recap-ligne"><span class="label">Nom</span><span class="valeur">Martin</span></div>
+        <div class="recap-ligne"><span class="label">Prénom</span><span class="valeur">Claire</span></div>
+        <div class="recap-ligne"><span class="label">Date de naissance</span><span class="valeur">14/03/1990</span></div>
+        <div class="recap-ligne"><span class="label">Adresse</span><span class="valeur">12 rue des Lilas, 31000 Toulouse</span></div>
+        <div class="recap-ligne"><span class="label">Pièces jointes</span><span class="valeur">Voir étape précédente</span></div>
+      </div>
+
+      <div class="groupe-champ">
+        <label><input type="checkbox" checked style="width:auto;margin-right:8px;">J'atteste de l'exactitude des informations fournies.</label>
+      </div>
+
+      <div class="actions-etape">
+        <button class="bouton bouton-secondaire" type="button" onclick="allerEtape(3)">← Retour</button>
+        <button class="bouton bouton-primaire" id="bouton-soumettre" type="button" onclick="soumettreDossier('CNI')">Envoyer ma demande</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉCRAN 99 : Confirmation -->
+  <div id="etape-99" class="ecran-etape">
+    <div class="carte-etape bandeau-confirmation">
+      <div class="icone-ok">✓</div>
+      <h2>Votre demande a bien été envoyée</h2>
+      <p>Vous recevrez un courriel de confirmation. Votre numéro de suivi de dossier :</p>
+      <div class="numero-dossier" data-numero-dossier>—</div>
+      <p style="margin-top:20px;"><a class="bouton bouton-secondaire" href="../../index.html">Retour à l'accueil</a></p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="conteneur footer-bas" style="border-top:none;">
+    <span>© République Démo — site fictif à usage pédagogique</span>
+  </div>
+</footer>
+
+<img src="../../img/mascotte.png" class="mascotte-flottante" alt="" aria-hidden="true">
+
+<style>
+.ecran-etape{display:none;}
+.ecran-etape.actif{display:block;}
+</style>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>

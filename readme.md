@@ -1,0 +1,1 @@
+Exemple de projet pour appliquer une démarche d'écoconception de A à Z. 
