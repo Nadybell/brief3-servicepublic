@@ -1,6 +1,7 @@
 # Pipeline de build + déploiement automatisé.
-# Minifie CSS/JS/HTML (RGESN RWEB-0077) avant de publier sur GitHub Pages,
-# à chaque push sur la branche main.
+# Minifie CSS/JS/HTML et optimise les images (RGESN RWEB-0077 +
+# optimisation images) avant de publier sur GitHub Pages, à chaque push
+# sur la branche main.
 
 name: Build & Deploy
 
@@ -33,7 +34,7 @@ jobs:
       - name: Installer les dépendances
         run: npm install
 
-      - name: Build (minification CSS/JS/HTML)
+      - name: Build (minification CSS/JS/HTML + optimisation images)
         run: npm run build
 
       - name: Préparer l'artefact Pages
