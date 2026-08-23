@@ -1,0 +1,127 @@
+name: Audit YellowLabTools
+
+# Se déclenche automatiquement une fois que le workflow "Build & Deploy"
+# s'est terminé avec succès (donc sur le site réellement à jour), et
+# reste disponible en lancement manuel depuis l'onglet "Actions".
+on:
+  workflow_run:
+    workflows: ["Build & Deploy"]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  audit:
+    # Ne se lance que si le déploiement qui a déclenché cet événement a
+    # réussi (évite d'auditer un site resté sur une version cassée).
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      # Un run distinct par page auditée, pour un rapport lisible page par page.
+      matrix:
+        page:
+          - name: accueil
+            url: "https://nadybell.github.io/brief3-servicepublic/"
+          - name: carte-identite
+            url: "https://nadybell.github.io/brief3-servicepublic/pages/carte-identite/etape-1.html"
+          - name: acte-naissance
+            url: "https://nadybell.github.io/brief3-servicepublic/pages/acte-naissance/etape-1.html"
+          - name: inscription-electorale
+            url: "https://nadybell.github.io/brief3-servicepublic/pages/inscription-electorale/etape-1.html"
+    steps:
+      - name: Démarrer le serveur YellowLabTools (Docker, pré-construit)
+        run: docker run -d --privileged -p 8383:8383 --name ylt ousamabenyounes/yellowlabtools
+
+      - name: Attendre que le serveur soit prêt
+        timeout-minutes: 3
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:8383/ > /dev/null; then
+              echo "Serveur YLT prêt."
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Le serveur YLT n'a pas démarré à temps."
+          exit 1
+
+      - name: Lancer l'audit de la page
+        run: |
+          # Paramètre anti-cache : garantit qu'aucun cache CDN intermédiaire
+          # ne fasse jamais analyser une version obsolète, ou pire, celle
+          # d'une autre page (cause probable d'un bug rencontré précédemment).
+          TARGET_URL="${{ matrix.page.url }}?ylt-cache-bust=${{ github.run_id }}-${{ github.run_attempt }}"
+          echo "Page ciblée (attendue) : $TARGET_URL"
+
+          RUN_ID=$(curl -s -X POST http://localhost:8383/api/runs \
+            -H "Content-Type: application/json" \
+            -d "{\"url\":\"$TARGET_URL\",\"waitForResponse\":false,\"screenshot\":true}" \
+            | node -pe 'JSON.parse(require("fs").readFileSync(0,"utf8")).runId')
+          echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
+          echo "TARGET_URL=$TARGET_URL" >> $GITHUB_ENV
+          echo "Run lancé pour $TARGET_URL, id : $RUN_ID"
+
+      - name: Attendre la fin de l'audit
+        timeout-minutes: 5
+        run: |
+          for i in $(seq 1 60); do
+            STATUS=$(curl -s http://localhost:8383/api/runs/$RUN_ID | node -pe 'JSON.parse(require("fs").readFileSync(0,"utf8")).status.statusCode')
+            echo "Statut : $STATUS"
+            if [ "$STATUS" == "complete" ]; then exit 0; fi
+            if [ "$STATUS" == "failed" ]; then echo "L'audit a échoué côté YellowLabTools."; exit 1; fi
+            sleep 5
+          done
+          echo "L'audit n'a pas terminé dans le temps imparti."
+          exit 1
+
+      - name: Récupérer le rapport complet
+        run: curl -s http://localhost:8383/api/results/$RUN_ID > "ylt-report-${{ matrix.page.name }}.json"
+
+      - name: Récupérer la capture d'écran
+        run: curl -s http://localhost:8383/api/results/$RUN_ID/screenshot.jpg > "ylt-screenshot-${{ matrix.page.name }}.jpg"
+
+      - name: Vérifier que le rapport correspond bien à la page demandée
+        # Garde-fou anti-mélange : si l'URL réellement analysée dans le
+        # rapport ne correspond pas à celle demandée pour ce job, on arrête
+        # tout plutôt que de publier silencieusement un rapport erroné
+        # (c'est exactement ce qui s'est produit une fois : le rapport
+        # "inscription-electorale" contenait en fait celui de "carte-identite").
+        run: |
+          AUDITED_URL=$(node -pe "JSON.parse(require('fs').readFileSync('ylt-report-${{ matrix.page.name }}.json','utf8')).params.url")
+          EXPECTED_BASE="${{ matrix.page.url }}"
+          echo "URL attendue (base) : $EXPECTED_BASE"
+          echo "URL auditée          : $AUDITED_URL"
+          case "$AUDITED_URL" in
+            "$EXPECTED_BASE"*) echo "✅ Le rapport correspond bien à la page ${{ matrix.page.name }}." ;;
+            *)
+              echo "❌ ERREUR : le rapport ne correspond pas à la page attendue pour ce job."
+              exit 1
+              ;;
+          esac
+
+      - name: Afficher le score global dans les logs
+        run: |
+          echo "=== Score YellowLabTools — ${{ matrix.page.name }} ==="
+          node -e "
+            const r = require('./ylt-report-${{ matrix.page.name }}.json');
+            function findScores(obj, path) {
+              if (obj && typeof obj === 'object') {
+                for (const k in obj) {
+                  if (k.toLowerCase().includes('globalscore')) {
+                    console.log((path + '.' + k).slice(1), ':', obj[k]);
+                  }
+                  findScores(obj[k], path + '.' + k);
+                }
+              }
+            }
+            findScores(r, '');
+          " || echo "Impossible d'extraire le résumé, voir le rapport complet en pièce jointe."
+
+      - name: Sauvegarder le rapport et la capture d'écran
+        uses: actions/upload-artifact@v4
+        with:
+          name: yellowlabtools-report-${{ matrix.page.name }}
+          path: |
+            ylt-report-${{ matrix.page.name }}.json
+            ylt-screenshot-${{ matrix.page.name }}.jpg
+          retention-days: 90
