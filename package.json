@@ -1,13 +1,15 @@
 {
   "name": "brief3-servicepublic",
   "private": true,
-  "description": "Build de production : minifie CSS/JS/HTML avant déploiement (RGESN RWEB-0077)",
+  "description": "Build de production : minifie CSS/JS/HTML et optimise les images avant déploiement (RGESN RWEB-0077 + optimisation images)",
   "scripts": {
     "build": "node scripts/build.js"
   },
   "devDependencies": {
     "clean-css": "^5.3.3",
     "html-minifier-terser": "^7.2.0",
-    "terser": "^5.31.0"
+    "terser": "^5.31.0",
+    "sharp": "^0.33.4",
+    "cheerio": "^1.0.0"
   }
 }
